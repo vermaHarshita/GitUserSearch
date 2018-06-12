@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-lg-4 offset-md-1">
+      <h2>
+        History
+        <button matTooltip="Clear History" class="userlist-filter" (click)="onRemoveAllUsers()" mat-icon-button>
+          <mat-icon fontSet="fas" fontIcon="fa-times"></mat-icon>
+        </button>
+        <button matTooltip="Sort Users By." class="userlist-filter" mat-icon-button [matMenuTriggerFor]="userlistFilter">
+          <mat-icon fontSet="fas" fontIcon="fa-sort"></mat-icon>
+        </button>
+        <mat-menu class="userlist-filter-menu-overlay" #userlistFilter="matMenu" xPosition="before">
+          <button mat-menu-item (click)="onSortUserlist('NAME')" [ngClass]="{ active: userlist.sort === 'NAME' }">
+            <mat-icon fontSet="fas" fontIcon="fa-user"></mat-icon>
+            <span>Name</span>
+          </button>
+          <button mat-menu-item (click)="onSortUserlist('FAVOURITE')" [ngClass]="{ active: userlist.sort === 'FAVOURITE' }">
+            <mat-icon fontSet="fas" fontIcon="fa-star"></mat-icon>
+            <span>Favourite</span>
+          </button>
+        </mat-menu>
+        <mat-chip-list class="userlist-filter-info d-none d-sm-block">
+          <mat-chip>
+            Displaying All {{sortedUserlist.length}} User{{sortedUserlist.length > 1 ? 's' : ''}}
+          </mat-chip>
+        </mat-chip-list>
+      </h2>
+
+      <mat-card *ngFor="let user of sortedUserlist" [ngClass]="routeAnimationsElements">
+        <mat-card-header>
+          <mat-card-title>
+            &nbsp;{{user.name}}&nbsp;
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-button (click)="onDetailsUser(user)">
+            <mat-icon fontSet="fas" fontIcon="fa-user-circle"></mat-icon>Details
+          </button>
+          <button *ngIf="user.favourite" mat-button (click)="onToggleFav(user)">
+            <mat-icon fontSet="fas" color='accent' fontIcon="fa-star"></mat-icon>Favourite
+          </button>
+          <button *ngIf="!user.favourite" mat-button (click)="onToggleFav(user)">
+            <mat-icon fontSet="fas" fontIcon="fa-circle"></mat-icon>Favourite
+          </button>
+          <button mat-button (click)="onRemoveDoneUser(user)">
+            <mat-icon fontSet="fas" fontIcon="fa-times"></mat-icon>Delete
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+      <br>
+      <br>
+    </div>
+    <div class="offset-md-1  col-md-5">
+      <user-detail [userId]="id" [isFavourite]="favourite"></user-detail>
+    </div>
+  </div>
+
+</div>

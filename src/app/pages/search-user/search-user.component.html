@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="main-heading">Search Users</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="offset-md-2 col-md-8 entry">
+      <form autocomplete="false">
+        <big-input matInput placeholder="Search Users.. " [value]="userStock.symbol" (keyup)="onSearchChange($event.target.value)" (keyup.enter)="onSymbolChange($event.target.value)">
+          <big-input-action fontSet="fas" fontIcon="fa-search" color="accent" (action)="onSearch()" matTooltip="Search" matTooltipPosition="before">
+          </big-input-action>
+        </big-input>
+      </form>
+      <br>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-lg-4 offset-lg-1">
+      <mat-spinner *ngIf="userStock.loading"></mat-spinner>
+      <ng-container *ngIf="userStock.user">
+        <h2>
+          Users
+          <button matTooltip="Sort Users By." class="user-filter" mat-icon-button [matMenuTriggerFor]="userFilter">
+            <mat-icon fontSet="fas" fontIcon="fa-sort"></mat-icon>
+          </button>
+          <mat-menu class="user-filter-menu-overlay" #userFilter="matMenu" xPosition="before">
+            <button mat-menu-item (click)="onSortUsers('Name')">
+              <mat-icon fontSet="fas" fontIcon="fa-user"></mat-icon>
+              <span>Name</span>
+            </button>
+            <button mat-menu-item (click)="onSortUsers('Favourite')">
+              <mat-icon fontSet="fas" fontIcon="fa-star"></mat-icon>
+              <span>Favourite</span>
+            </button>
+          </mat-menu>
+          <mat-chip-list class="user-filter-info d-none d-sm-block">
+            <mat-chip>
+              Displaying {{userStock.user.items.length}} User{{userStock.user.items.length > 1 ? 's' : ''}}
+            </mat-chip>
+          </mat-chip-list>
+        </h2>
+        <mat-list class="make-scrollable" flex>
+          <mat-list-item *ngFor="let item of userStock.user.items">
+            <img matListAvatar src="{{item.avatar_url}}" alt="...">
+            <h3 matLine> {{item.login}} </h3>
+            <button matTooltip="Click To View Details" (click)="onDetails(item)" mat-icon-button>
+              <mat-icon fontSet="fas" fontIcon="fa-user-circle"></mat-icon>
+            </button>
+            <button *ngIf="item.favourite" matTooltip="UnMark Favourite" (click)="onToggleFavourite(item)" mat-icon-button>
+              <mat-icon fontSet="fas" color='accent' fontIcon="fa-star"></mat-icon>
+            </button>
+            <button *ngIf="!item.favourite" matTooltip="Mark Favourite" (click)="onToggleFavourite(item)" mat-icon-button>
+              <mat-icon fontSet="fas" fontIcon="fa-circle"></mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+      </ng-container>
+      <p *ngIf="userStock.error" class="error">
+        <mat-icon fontSet="fas" fontIcon="fa-exclamation-triangle"></mat-icon>
+        <br>
+        <br>
+        <span>User
+          <span class="symbol">{{stocks.symbol}}</span> not found</span>
+      </p>
+      <br>
+      <br>
+    </div>
+    <div class="offset-md-1  col-md-5">
+      <user-detail [userId]="id" [isFavourite]="favourite"></user-detail>
+    </div>
+  </div>
+</div>

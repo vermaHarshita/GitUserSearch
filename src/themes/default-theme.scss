@@ -1,0 +1,5 @@
+$gusrs-primary: mat-palette($mat-indigo, 800, 300, 900);
+$gusrs-accent: mat-palette($mat-light-blue);
+$gusrs-warn: mat-palette($mat-pink, 600);
+
+$gusrs-theme: mat-light-theme($gusrs-primary, $gusrs-accent, $gusrs-warn);

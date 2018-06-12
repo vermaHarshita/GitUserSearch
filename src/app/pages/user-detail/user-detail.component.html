@@ -1,0 +1,61 @@
+<div *ngIf="userId " class="container">
+  <!-- {{userDetail.loading}}{{userDetail.detail |json}} {{userDetail|json}} -->
+  <!-- {{userDetail | json}}-->
+  <mat-spinner *ngIf="userDetail.loading"></mat-spinner> 
+  <ng-container *ngIf="(userDetail && userDetail?.detail)">
+    <h2>Profile</h2>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>
+          <a *ngIf="isFavourite">
+            <mat-icon fontSet="fas" color='accent' fontIcon="fa-star"></mat-icon>
+          </a>{{userDetail.detail.name || userDetail.detail.id}} 
+        </mat-card-title>
+        <mat-card-subtitle>Location : {{userDetail.detail.location}}</mat-card-subtitle>
+        <mat-card-subtitle>Company : {{userDetail.detail.company}}</mat-card-subtitle>
+        <mat-card-subtitle>
+
+          <mat-chip-list>
+            <mat-chip>
+              Followers {{userDetail.detail.followers}}
+            </mat-chip>
+            <mat-chip>
+              Following {{userDetail.detail.following}}
+            </mat-chip>
+            <mat-chip>
+              Repositories {{userDetail.detail.public_repos}}
+            </mat-chip>
+
+          </mat-chip-list>
+        </mat-card-subtitle>
+
+      </mat-card-header>
+      <img mat-card-image src="{{userDetail.detail.avatar_url}}" alt="">
+      <mat-card-content>
+        <p>
+          {{userDetail.detail.bio}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a href="{{userDetail.detail.html_url}}" target="_blank" mat-button>
+          <mat-icon fontSet="fab" fontIcon="fa-github"></mat-icon>Github</a>
+        <a href="{{userDetail.detail.blog}}" target="_blank" mat-button>
+          <mat-icon fontSet="fas" fontIcon="fa-book"></mat-icon>Blog</a>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+  <p *ngIf="userDetail.error" class="error">
+    <mat-icon fontSet="fas" fontIcon="fa-exclamation-triangle"></mat-icon>
+    <br>
+    <br>
+    <span>User Details
+      <span class="symbol"></span> Unavailable</span>
+  </p>
+</div>
+<ng-template #notavailable class="error">
+  <mat-icon fontSet="fas" fontIcon="fa-exclamation-triangle"></mat-icon>
+  <br>
+  <br>
+  <span>User Details
+    <span class="symbol"></span> Unavailable</span>
+</ng-template>

@@ -1,0 +1,77 @@
+.main-heading {
+  text-transform: uppercase;
+  margin: 0 0 20px 0;
+}
+
+mat-form-field {
+  width: 100%;
+}
+.user-filter {
+  float: right;
+  position: relative;
+  left: 10px;
+  top: -5px;
+  margin-left: -10px;
+}
+.user-filter-info {
+  float: right;
+  font-weight: normal;
+}
+
+mat-card {
+  margin: 0 0 20px 0;
+
+  mat-card-title {
+    position: relative;
+
+    code {
+      position: absolute;
+      top: 11px;
+      right: 0;
+      float: right;
+      font-size: 10px;
+    }
+  }
+  mat-card-subtitle {
+    min-height: 60px;
+  }
+
+  // @media (max-width: map-get($grid-breakpoints, sm)) {
+  //   mat-card-subtitle {
+  //     min-height: auto;
+  //   }
+  // }
+
+  a {
+    mat-icon {
+      position: relative;
+      top: 2px;
+      font-size: 16px;
+    }
+  }
+}
+mat-spinner {
+  margin: auto;
+}
+
+.error {
+  text-align: center;
+  padding: 20px;
+
+  mat-icon {
+    width: 54px;
+    font-size: 48px;
+  }
+
+  > span {
+    opacity: 0.4;
+  }
+  .symbol {
+    font-weight: bold;
+  }
+}
+mat-list.make-scrollable {
+  height: 600px; //Or any other height you wish
+  overflow-y: scroll;
+  border: 2px
+}

@@ -1,0 +1,81 @@
+.entry {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.userlist-filter-info {
+  float: right;
+  font-weight: normal;
+}
+
+.userlist-filter {
+  float: right;
+  position: relative;
+  left: 10px;
+  top: -5px;
+  margin-left: -10px;
+}
+
+.userlist {
+  display: flex;
+  margin-bottom: 10px;
+
+  .userlist-done {
+    margin: 0 20px 0 0;
+  }
+
+  .userlist-label {
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+
+    &.userlist-label-done {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+  }
+}
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+mat-card {
+  margin: 0 0 20px 0;
+
+  mat-card-title {
+    position: relative;
+
+    code {
+      position: relative;
+      top: 10px;
+      right: 0;
+      float: right;
+      font-size: 10px;
+    }
+  }
+  mat-card-subtitle {
+    min-height: 20px;
+  }
+
+  @media (max-width: map-get($grid-breakpoints, sm)) {
+    mat-card-subtitle {
+      min-height: auto;
+    }
+  }
+
+  a {
+    mat-icon {
+      position: relative;
+      top: 2px;
+      font-size: 16px;
+    }
+  }
+}
+.example-card {
+  max-width: 400px;
+}
+
+

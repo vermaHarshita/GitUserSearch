@@ -1,0 +1,9 @@
+$gusrs-nature-primary: mat-palette($mat-brown, 700, 300, 900);
+$gusrs-nature-accent: mat-palette($mat-deep-purple, 300);
+$gusrs-nature-warn: mat-palette($mat-red, 600);
+
+$gusrs-nature-theme: mat-light-theme(
+  $gusrs-nature-primary,
+  $gusrs-nature-accent,
+  $gusrs-nature-warn
+);

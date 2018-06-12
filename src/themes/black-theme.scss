@@ -1,0 +1,9 @@
+$gusrs-black-primary: mat-palette($mat-grey, 700, 300, 900);
+$gusrs-black-accent: mat-palette($mat-blue-grey, 400);
+$gusrs-black-warn: mat-palette($mat-red, 500);
+
+$gusrs-black-theme: mat-dark-theme(
+  $gusrs-black-primary,
+  $gusrs-black-accent,
+  $gusrs-black-warn
+);

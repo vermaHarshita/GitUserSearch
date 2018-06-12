@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+
+@mixin gusrs-user-market-component-theme($theme) {
+  $warn: map-get($theme, warn);
+
+  gusrs-user-market {
+    mat-card {
+      .negative {
+        color: mat-color($warn);
+      }
+    }
+
+    .error {
+      mat-icon {
+        color: mat-color($warn);
+      }
+    }
+  }
+}
